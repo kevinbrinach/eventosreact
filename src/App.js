@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import Header from './components/Header';
+import CategoriasProvider from './context/CategoriasContext';
+import Formulario from './components/Formulario';
+import EventosProvider from './context/EventosContext';
+import ListaEventos from './components/ListaEventos';
+
+
+//Esta aplicacion usa un framework llamado UIKit
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    //Si se rodean todos los componentes con EventosProvider y CategoriasProvider se puede permitir a todos los componentes usar en algun momento los metodos que Eventos o Categorias tengan
+    <EventosProvider>
+      <CategoriasProvider>
+        <Header/>
+
+        <div className="uk-container">
+            <Formulario/>
+
+            <ListaEventos/>
+        </div>
+      </CategoriasProvider>
+    </EventosProvider>
   );
 }
 
